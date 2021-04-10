@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='extrabootstrap.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='cards.css') }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+    <nav class="navbar navbar-inverse">
+
+    </nav>
+
+    <div class="container">
+        <h1>News</h1>
+        <hr />
+        <div class="container">
+            <h2>BBC News</h2>
+            <hr />
+            <div class="card-deck">
+                {% for newsArticle in bbcNews %}
+                    <div class="card" style="width: 25rem; margin-bottom: 2rem; align-items: flex-start!important;">
+                        <img class="card-img-top" src="{{ newsArticle[3] }}" alt="Card image cap" style="width: 25rem;">
+                        <div class="card-body">
+                            <h5 class="card-title"><b>{{ newsArticle[0] }}</b></h5>
+                            <p class="card-text">{{ newsArticle[1] }}</p>
+
+                            <a href="https://www.bbc.com/news/coronavirus" class="card-link">
+                                -BBC
+                            </a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <h2>CNN News</h2>
+        <hr />
+        <div class="card-deck">
+            {% for newsArticle in cnnNews %}
+            <div class="card" style="width: 20rem; margin-bottom: 2rem; align-items: flex-start!important;">
+                {% if newsArticle[3] != None %}
+                    <img class="card-img-top" src="{{ newsArticle[3] }}" alt="Card image cap" style="width: 20rem;">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title"><b>{{ newsArticle[0] }}</b></h5>
+                    <p class="card-text">{{ newsArticle[1] }}</p>
+                    <a href="https://www.cnn.com/world/live-news/coronavirus-pandzemic-vaccine-updates-04-10-21/index.html" class="card-link">
+                        -CNN
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
