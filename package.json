@@ -1,0 +1,24 @@
+{
+  "name": "doctorai",
+  "version": "1.0.0",
+  "description": "democratizing healthcare through a simulated online check up",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/whyroland/doctorAI.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/whyroland/doctorAI/issues"
+  },
+  "homepage": "https://github.com/whyroland/doctorAI#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "jquery": "^3.6.0"
+  }
+}
