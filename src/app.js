@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({
 }));
 const port = process.env.port || 80;
 app.set('view engine', 'jade');
-app.use(express.static('public'));
+app.use(express.static('src/public'));
 
 /**
  * WEBPAGES
