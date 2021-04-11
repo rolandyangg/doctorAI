@@ -6,7 +6,7 @@
 const side_data = [{
         "step": 0,
         "question": "",
-        "instructions": "In this procedure, you will be able to get live results on your physical, social, and mental health while also getting live results on emotion and heart rate. ",
+        "instructions": "In this procedure, you will be able to get live results on your physical, social, and mental health while also getting live results on emotion and heart rate. Press Next Question to begin.",
         "type": "null"
     },
     {
@@ -35,14 +35,14 @@ const side_data = [{
     },
     {
         "step": 5,
-        "question": "What was your highest point in terms of mental health over the past year?",
-        "instructions": "Respond to the question by pressing the 'Record' button and it turns white when it is recording. Press Next Question when completed",
+        "question": "",
+        "instructions": "Last Step! Smile towards the camera to take a photo of yourself for an analysis!",
         "type": "photo"
     },
     {
         "step": 6,
-        "question": "Do you want an analysis of yourself with live results?",
-        "instructions": "Last Step! Smile towards the camera to take a photo of yourself for an analysis!",
+        "question": "",
+        "instructions": "Great Job! Click Next Questions and scroll down to proceed and see your results!",
         "type": "null"
     }
 ]

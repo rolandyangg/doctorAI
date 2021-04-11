@@ -43,15 +43,11 @@ app.get("/about", function (req, res) {
  * DATA
  */
  app.post('/getResults', (req, res) => {
-     /*
-    (async () => {
-        var data = await hashtag.getHashtagsFromImage(req.files[0].buffer);
-        res.send(JSON.stringify(data)); // Sends the results
-        console.log("Results sent to page!");
-    })()*/
-    console.log(req.body);
-    let data = "apple";
-    res.send(JSON.stringify(data));
+    let textResponses = req.body.textResponses;
+    // console.log(req.body.textResponses);
+    console.log(textResponses);
+    let data = "";
+    res.send(JSON.stringify(textResponses));
 });
 
 // Turns on Server
