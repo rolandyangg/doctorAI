@@ -61,21 +61,8 @@
                     </div>
                 </div>
                 <div class="col-9 rounded" style="background-color: white;">
-                    <div class="d-xl-flex justify-content-xl-center align-items-xl-center" style="padding: 5rem;">
-                        <video id="player" autoplay class="embed-responsive-item"></video>
-                        <script>
-                            var player = document.getElementById('player');
-                    
-                            var handleSuccess = function (stream) {
-                                player.srcObject = stream;
-                                player.onloadmetadata = () => {
-                                    player.play();
-                                }
-                            };
-                    
-                            navigator.mediaDevices.getUserMedia({ audio: true, video: true })
-                                .then(handleSuccess)
-                        </script>
+                    <div id="videodiv" class="d-xl-flex justify-content-xl-center align-items-xl-center" style="padding: 3rem;">
+                       <video id="player" width="800" height="450" autoplay muted></video> <!--<video id="player" autoplay class="embed-responsive-item"></video>-->
                     </div>       
                 </div>
             </div>
@@ -154,6 +141,8 @@
     <script src="application/assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="application/assets/js/bs-init.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.js"></script>
+    <script src="scripts/face-api.min.js"></script>
+    <script src="scripts/application.js"></script>
 </body>
 
 </html>
