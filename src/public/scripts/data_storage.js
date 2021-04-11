@@ -60,6 +60,7 @@ var emotionSeconds = {
 var emotionArray = [];
 var heartrate = [];
 var textResponses = [];
+var screenshotImage = null;
 
 function clearData() {
     emotionSeconds = {
@@ -75,7 +76,8 @@ function clearData() {
     emotionArray = [];
     heartrate = [];
     textResponses = [];
+    screenshotImage = null;
     console.log("Successfully reset data!");
 }
 
-export {side_data, emotionSeconds, emotionArray, heartrate, textResponses, clearData};
+export {side_data, emotionSeconds, emotionArray, heartrate, textResponses, screenshotImage, clearData};

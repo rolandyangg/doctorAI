@@ -64,20 +64,6 @@
                     <div id="videodiv" class="d-xl-flex justify-content-xl-center align-items-xl-center" style="padding: 3rem;">
                        <video hidden id="player" width="800" height="450" autoplay muted></video>
                        <canvas id="canvas1" width="800" height="450"></canvas> <!--<video id="player" autoplay class="embed-responsive-item"></video>-->
-                       <script>  
-                            function capture() {        
-                                var canvas = document.getElementById('canvas1');     
-                                var video = document.getElementById('player');
-                                canvas.width = video.videoWidth;
-                                canvas.height = video.videoHeight;
-                                canvas.getContext('2d').drawImage(video, 0, 0, video.videoWidth, video.videoHeight);  
-                                canvas.toBlob((blob) => {
-                                    const img = new Image();
-                                    img.src = (window.URL ? URL : webkitURL).createObjectURL(blob);
-                                    console.log(img);
-                                });
-                            }
-                       </script>
                     </div>       
                 </div>
             </div>
@@ -86,8 +72,7 @@
                     <div class="text-center" style="padding: 1rem;">
                         <nav class="navbar navbar-light navbar-expand-md">
                             <div class="container-fluid"><h2 id="bpm-count" class="text-center" style="padding: 0.3rem;color:black">-- BPM</h2><button id="reset" class="btn btn-primary text-right button-type" data-bs-hover-animate="pulse" type="button"><span style="font-family: &quot;poppins&quot;;">&nbsp;Reset&nbsp;</span><i class="fa fa-rotate-left"></i></button><button id="record" class="btn btn-primary text-right button-type"
-                                    data-bs-hover-animate="pulse" type="button" style="bg-color:white"><span style="font-family: &quot;poppins&quot;;">&nbsp;Record&nbsp;</span><i class="fa fa-stop-circle"></i><button id="capture" class="btn btn-primary text-right button-type" data-bs-hover-animate="pulse"
-                                    type="button"><span style="font-family: &quot;poppins&quot;;">&nbsp;Capture&nbsp;</span><i class="fa fa-play"></i></button></div></button><button id="next-question" class="btn btn-primary text-right button-type" data-bs-hover-animate="pulse"
+                                    data-bs-hover-animate="pulse" type="button" style="bg-color:white"><span style="font-family: &quot;poppins&quot;;">&nbsp;Record&nbsp;</span><i class="fa fa-stop-circle"></i><button id="next-question" class="btn btn-primary text-right button-type" data-bs-hover-animate="pulse"
                                     type="button"><span style="font-family: &quot;poppins&quot;;">&nbsp;Next Question&nbsp;</span><i class="fa fa-play"></i></button></div>
                         </nav>
                     </div>

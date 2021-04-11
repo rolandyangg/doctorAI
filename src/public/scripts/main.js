@@ -1,4 +1,4 @@
-import {side_data, emotionSeconds, emotionArray, heartrate, textResponses, clearData} from "./data_storage.js";
+import {side_data, emotionSeconds, emotionArray, heartrate, screenshotImage, textResponses, clearData} from "./data_storage.js";
 
 // button
 const reset = document.getElementById("reset");
@@ -71,7 +71,8 @@ record.addEventListener("click", () => {
 })
 
 function runPhotoTake() {
-    // take screenshot here
+    let image = await captureImage();
+    screenshotImage = image;
 }
 
 function runSpeechRecognition() {
@@ -111,11 +112,7 @@ function runSpeechRecognition() {
      recognition.start();
 }
 
-capture.addEventListener("click", async () => {
-    let image = await capture();
-})
-
-function capture() {
+function captureImage() {
     return new Promise((resolve, reject) => {{
         canvas.width = video.videoWidth;
         canvas.height = video.videoHeight;
@@ -127,5 +124,19 @@ function capture() {
         });
     }})
 }
+
+/**
+function capture() {        
+    var canvas = document.getElementById('canvas1');     
+    var video = document.getElementById('player');
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+    canvas.getContext('2d').drawImage(video, 0, 0, video.videoWidth, video.videoHeight);  
+    canvas.toBlob((blob) => {
+        const img = new Image();
+        img.src = (window.URL ? URL : webkitURL).createObjectURL(blob);
+        console.log(img);
+    });
+}**/
 
 export {updateBPM};
