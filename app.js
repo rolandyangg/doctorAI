@@ -4,6 +4,8 @@
 // Import libraries
 const express = require("express");
 const bodyParser = require("body-parser");
+const multer = require('multer');
+var upload = multer();
 
 // Setup server
 const app = express();
@@ -14,6 +16,7 @@ app.use(bodyParser.urlencoded({
 const port = process.env.port || 80;
 app.set('view engine', 'jade');
 app.use(express.static('src/public'));
+app.use(upload.array());
 
 /**
  * WEBPAGES
@@ -46,7 +49,7 @@ app.get("/about", function (req, res) {
         res.send(JSON.stringify(data)); // Sends the results
         console.log("Results sent to page!");
     })()*/
-    console.log(req.body[4][1]);
+    console.log(req.body);
     let data = "apple";
     res.send(JSON.stringify(data));
 });
