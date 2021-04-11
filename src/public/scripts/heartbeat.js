@@ -1,4 +1,11 @@
-const RESCAN_INTERVAL = 5000;
+import {
+  side_data,
+  emotionSeconds,
+  emotionArray,
+  heartrate
+} from "./data_storage.js";
+
+const RESCAN_INTERVAL = 15000;
 const DEFAULT_FPS = 30;
 const LOW_BPM = 42;
 const HIGH_BPM = 240;
@@ -9,6 +16,8 @@ const MAX_CORNERS = 10;
 const MIN_CORNERS = 5;
 const QUALITY_LEVEL = 0.01;
 const MIN_DISTANCE = 10;
+
+var heartbeatCount = 0;
 
 // Simple rPPG implementation in JavaScript
 // - Code could be improved given better documentation available for opencv.js
@@ -83,7 +92,6 @@ export class Heartbeat {
 
 
 
-
       Promise.all([
         faceapi.nets.tinyFaceDetector.loadFromUri('scripts/models'),
         faceapi.nets.faceLandmark68Net.loadFromUri('scripts/models'),
@@ -102,17 +110,41 @@ export class Heartbeat {
         height: this.webcamVideoElement.height
       }
       faceapi.matchDimensions(canvas, displaySize)
+
       setInterval(async () => {
-        const detections = await faceapi.detectAllFaces(this.webcamVideoElement, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceExpressions()
-        // console.log(detections);
-        const resizedDetections = faceapi.resizeResults(detections, displaySize)
-        canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height)
-        faceapi.draw.drawDetections(canvas, resizedDetections)
-        // faceapi.draw.drawFaceLandmarks(canvas, resizedDetections)
-        faceapi.draw.drawFaceExpressions(canvas, resizedDetections)
+        try {
+          const detections = await faceapi.detectSingleFace(this.webcamVideoElement, new faceapi.TinyFaceDetectorOptions()).withFaceExpressions();
+          const resizedDetections = faceapi.resizeResults(detections, displaySize)
+          canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height)
+          faceapi.draw.drawDetections(canvas, resizedDetections)
+          // faceapi.draw.drawFaceLandmarks(canvas, resizedDetections)
+          faceapi.draw.drawFaceExpressions(canvas, resizedDetections);
+          var emotionsDetected = detections.expressions;
+        } catch (error) {
+          console.log("Cannot update box person has moved off camera");
+        }
+
+        // var bpm = 70;
+        // update data once every second
+        let largestEmotion = "offcamera";
+        try {
+          Object.entries(emotionsDetected).forEach(([expression, chance]) => {
+            if (largestEmotion === "offcamera")
+              largestEmotion = expression;
+            else {
+              if (chance > emotionsDetected[largestEmotion])
+                largestEmotion = expression;
+            }
+          })
+        } catch (error) {
+          console.log("Pushing off camera to data");
+        }
+        console.log(largestEmotion);
+        emotionSeconds[largestEmotion]++;
+        emotionArray.push(largestEmotion);
+        console.log(emotionArray);
+        // heartrate.push(bpm);
       }, 1000)
-
-
 
 
 
@@ -347,7 +379,17 @@ export class Heartbeat {
         bandMask.delete();
         // Infer BPM
         let bpm = result.maxLoc.y * fps / signal.rows * SEC_PER_MIN;
-        console.log(bpm);
+
+        // push heartrate once per second
+        if (heartbeatCount % 4 === 0) {
+          if (heartbeatCount === 12) {
+            console.log(bpm);
+            heartrate.push(bpm);
+            console.log(heartrate);
+            heartbeatCount = 0;
+          }
+        }
+
         // Draw BPM
         // this.drawBPM(bpm);
       }

@@ -6,14 +6,14 @@ const HAARCASCADE_URI = "scripts/haarcascade_frontalface_alt.xml"
 // Load opencv when needed
 async function loadOpenCv(uri) {
   return new Promise(function(resolve, reject) {
-    console.log("starting to load opencv");
+    console.log("Loading OpenCV");
     var tag = document.createElement('script');
     tag.src = uri;
     tag.async = true;
     tag.type = 'text/javascript'
     tag.onload = () => {
       cv['onRuntimeInitialized'] = () => {
-        console.log("opencv ready");
+        console.log("OpenCV Loaded");
         resolve();
       }
     };
@@ -25,8 +25,8 @@ async function loadOpenCv(uri) {
   });
 }
 
-let demo = new Heartbeat("player", "canvas1", HAARCASCADE_URI, 30, 6, 250);
+let camera = new Heartbeat("player", "canvas1", HAARCASCADE_URI, 30, 6, 250);
 var ready = loadOpenCv(OPENCV_URI);
 ready.then(function() {
-  demo.init();
+  camera.init();
 });

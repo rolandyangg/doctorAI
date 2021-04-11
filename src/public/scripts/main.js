@@ -1,74 +1,4 @@
-const side_data = [{
-        "step": 0,
-        "question": "",
-        "instructions": "",
-    },
-    {
-        "step": 1,
-        "question": "",
-        "instructions": "",
-    },
-    {
-        "step": 2,
-        "question": "",
-        "instructions": "",
-    },
-    {
-        "step": 2.1,
-        "question": "",
-        "instructions": "",
-    },
-    {
-        "step": 2.2,
-        "question": "",
-        "instructions": "",
-    },
-    {
-        "step": 2.3,
-        "question": "",
-        "instructions": "",
-    },
-    {
-        "step": 2.4,
-        "question": "",
-        "instructions": "",
-    },
-    {
-        "step": 2.5,
-        "question": "",
-        "instructions": "",
-    },
-    {
-        "step": 2.6,
-        "question": "",
-        "instructions": "",
-    },
-    {
-        "step": 2.7,
-        "question": "",
-        "instructions": "",
-    },
-    {
-        "step": 2.8,
-        "question": "",
-        "instructions": "",
-    },
-    {
-        "step": 2.9,
-        "question": "",
-        "instructions": "",
-    },
-    {
-        "step": 3,
-        "question": "",
-        "instructions": "",
-    },
-    {
-        "step": 4,
-        "question": "",
-        "instructions": "",
-    },
-]
+import {side_data, emotionSeconds, emotionArray, heartrate, clearData} from "./data_storage.js";
 
 // button
 const reset = document.getElementById("reset");
@@ -97,6 +27,7 @@ nextquestion.addEventListener("click", () => {
 reset.addEventListener("click", () => {
     currIndex = 0;
     currStep = 0;
+    clearData();
     updateSideData();
 })
 
