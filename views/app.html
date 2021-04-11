@@ -47,16 +47,16 @@
                 <div class="col-3 rounded" style="background-color: rgb(48,160,167);">
                     <div class="text-center" style="padding: 1.5rem;">
                         <div class="text-center">
-                            <h2 class="text-center white-text" style="padding: 0.3rem;">Progress<br></h2>
-                            <p class="white-text">Paragraph</p>
+                            <h2 class="text-center white-text" style="padding: 0.3rem;">Instructions<br></h2>
+                            <p id="instructions" class="white-text">Paragraph</p>
                         </div>
                         <div class="text-center">
-                            <h2 class="text-center white-text" style="padding: 0.3rem;">Instructions</h2>
-                            <p class="white-text" style="font-size: 1.5rem;">Paragraph</p>
+                            <h2 class="text-center white-text" style="padding: 0.3rem;">Progress</h2>
+                            <p id="progress" class="white-text" style="font-size: 1.5rem;">Paragraph</p>
                         </div>
                         <div class="text-center">
-                            <h2 class="text-center white-text" style="padding: 0.3rem;">Question</h2>
-                            <p class="white-text">Paragraph</p>
+                            <h2 id="question-title" class="text-center white-text" style="padding: 0.3rem;">Question</h2>
+                            <p id="question" class="white-text">Paragraph</p>
                         </div>
                     </div>
                 </div>
@@ -70,8 +70,8 @@
                 <div class="col rounded" style="background-color: rgb(255,255,255);">
                     <div class="text-center" style="padding: 1rem;">
                         <nav class="navbar navbar-light navbar-expand-md">
-                            <div class="container-fluid"><button class="btn btn-primary text-right button-type" data-bs-hover-animate="pulse" type="button"><span style="font-family: &quot;poppins&quot;;">&nbsp;Reset&nbsp;</span><i class="fa fa-rotate-left"></i></button><button class="btn btn-primary text-right button-type"
-                                    data-bs-hover-animate="pulse" type="button"><span style="font-family: &quot;poppins&quot;;">&nbsp;Record&nbsp;</span><i class="fa fa-stop-circle"></i></button><button class="btn btn-primary text-right button-type" data-bs-hover-animate="pulse"
+                            <div class="container-fluid"><button id="reset" class="btn btn-primary text-right button-type" data-bs-hover-animate="pulse" type="button"><span style="font-family: &quot;poppins&quot;;">&nbsp;Reset&nbsp;</span><i class="fa fa-rotate-left"></i></button><button id="record" class="btn btn-primary text-right button-type"
+                                    data-bs-hover-animate="pulse" type="button"><span style="font-family: &quot;poppins&quot;;">&nbsp;Record&nbsp;</span><i class="fa fa-stop-circle"></i></button><button id="next-question" class="btn btn-primary text-right button-type" data-bs-hover-animate="pulse"
                                     type="button"><span style="font-family: &quot;poppins&quot;;">&nbsp;Next Question&nbsp;</span><i class="fa fa-play"></i></button></div>
                         </nav>
                     </div>
@@ -142,7 +142,8 @@
     <script src="application/assets/js/bs-init.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.js"></script>
     <script src="scripts/face-api.min.js"></script>
-    <script src="scripts/application.js"></script>
+    <script src="scripts/face_detect.js"></script>
+    <script src="scripts/main.js"></script>
 </body>
 
 </html>
