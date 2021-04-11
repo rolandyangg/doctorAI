@@ -70,7 +70,7 @@ record.addEventListener("click", () => {
         console.log("Record button won't do anything at the moment you silly goose!");
 })
 
-function runPhotoTake() {
+async function runPhotoTake() {
     let image = await captureImage();
     screenshotImage = image;
 }
