@@ -1,4 +1,12 @@
-import {side_data, emotionSeconds, emotionArray, heartrate, screenshotImage, textResponses, clearData} from "./data_storage.js";
+import {
+    side_data,
+    emotionSeconds,
+    emotionArray,
+    heartrate,
+    screenshotImage,
+    textResponses,
+    clearData
+} from "./data_storage.js";
 
 // button
 const reset = document.getElementById("reset");
@@ -12,20 +20,20 @@ const instructions = document.getElementById("instructions");
 const question = document.getElementById("question");
 const questiontitle = document.getElementById("question-title");
 const bpmDisplay = document.getElementById("bpm-count");
-const canvas = document.getElementById('canvas1');     
+const canvas = document.getElementById('canvas1');
 const video = document.getElementById('player');
 var currIndex = 0;
 var currStep = 0;
 var maxStep = side_data[side_data.length - 1].step;
 var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
 var recognition = new SpeechRecognition();
-
+var localImage = null;
 
 
 // when next question is clicked
 nextquestion.addEventListener("click", () => {
     // check to make sure it can't go any further
-    if (currIndex != side_data.length) {
+    if (currIndex != side_data.length - 1) {
         currIndex++;
         currStep = side_data[currIndex].step;
         console.log(side_data[currIndex]);
@@ -61,6 +69,35 @@ function updateBPM(BPM) {
 function getResults() {
     // emotionSeconds, emotionArray, heartrate, textResponses, and image
     // formData
+    console.log("Getting results");
+    const formData = new FormData();
+
+    formData.append("emotionSeconds[]", emotionSeconds);
+    formData.append("emotionArray[]", emotionArray);
+    formData.append("heartrate[]", heartrate);
+    formData.append("textResponses[]", textResponses);
+    formData.append("image", localImage);
+
+    console.log(Array.from(formData));
+    // console.log("Sent");
+
+    jQuery.ajax({
+        url: '/getResults',
+        data: formData,
+        cache: false,
+        contentType: false,
+        processData: false,
+        method: 'POST',
+        type: 'POST', // For jQuery < 1.9
+        success: function (data) {
+            // Where the magic happens
+            console.log("Data Received");
+            var jsondata = JSON.parse(data);
+            console.log(jsondata);
+            useData(jsondata);
+        }
+    });
+    console.log("Data Sent");
 }
 
 record.addEventListener("click", () => {
@@ -73,7 +110,7 @@ record.addEventListener("click", () => {
 })
 
 async function runPhotoTake() {
-    screenshotImage = await captureImage();
+    localImage = await captureImage();
 }
 
 function runSpeechRecognition() {
@@ -86,13 +123,13 @@ function runSpeechRecognition() {
     var recognition = new SpeechRecognition();
 
     // This runs when the speech recognition service starts
-    recognition.onstart = function() {
+    recognition.onstart = function () {
         document.getElementById('record').setAttribute("style", "background-color:white");
         console.log("Begin speaking");
         // action.innerHTML = "<small>please speak...</small>";
     };
 
-    recognition.onspeechend = function() {
+    recognition.onspeechend = function () {
         document.getElementById('record').setAttribute("style", "background-color:rgb(75,189,214)")
         console.log("Stopped speaking");
         // action.innerHTML = "<small>stopped listening...</small>";
@@ -100,7 +137,7 @@ function runSpeechRecognition() {
     }
 
     // This runs when the speech recognition service returns result
-    recognition.onresult = function(event) {
+    recognition.onresult = function (event) {
         var transcript = event.results[0][0].transcript;
         var confidence = event.results[0][0].confidence;
         console.log(transcript);
@@ -109,21 +146,24 @@ function runSpeechRecognition() {
         // output.classList.remove("hide");
     };
 
-     // start recognition
-     recognition.start();
+    // start recognition
+    recognition.start();
 }
 
 function captureImage() {
-    return new Promise((resolve, reject) => {{
-        canvas.width = video.videoWidth;
-        canvas.height = video.videoHeight;
-        canvas.getContext('2d').drawImage(video, 0, 0, video.videoWidth, video.videoHeight);  
-        canvas.toBlob((blob) => {
-            let img = new Image();
-            img.src = (window.URL ? URL : webkitURL).createObjectURL(blob);
-            return resolve(img);
-        });
-    }})
+    return new Promise((resolve, reject) => {
+        {
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            canvas.getContext('2d').drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
+            canvas.toBlob((blob) => {
+                let img = new Image();
+                img.src = (window.URL ? URL : webkitURL).createObjectURL(blob);
+                console.log(img);
+                return resolve(img);
+            });
+        }
+    })
 }
 
 /**
@@ -140,4 +180,6 @@ function capture() {
     });
 }**/
 
-export {updateBPM};
+export {
+    updateBPM
+};

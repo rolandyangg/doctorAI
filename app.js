@@ -36,11 +36,22 @@ app.get("/about", function (req, res) {
     res.render('about');
 });
 
+/**
+ * DATA
+ */
+ app.post('/getResults', (req, res) => {
+     /*
+    (async () => {
+        var data = await hashtag.getHashtagsFromImage(req.files[0].buffer);
+        res.send(JSON.stringify(data)); // Sends the results
+        console.log("Results sent to page!");
+    })()*/
+    console.log(req.body[4][1]);
+    let data = "apple";
+    res.send(JSON.stringify(data));
+});
+
 // Turns on Server
 app.listen(port, function () {
     console.log("Server has started running on port: " + port);
 });
-
-/**
- * DATA
- */
