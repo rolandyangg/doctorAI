@@ -60,8 +60,24 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-9 rounded" style="background-color: white;opacity: 0.7;">
-                    <div class="d-xl-flex justify-content-xl-center align-items-xl-center" style="padding: 15rem;"><img class="d-xl-flex"></div>
+                <div class="col-9 rounded" style="background-color: white;">
+                    <div class="d-xl-flex justify-content-xl-center align-items-xl-center" style="padding: 15rem;">
+                        <video id="player" autoplay class="embed-responsive-item"></video>
+                        <script>
+                            var player = document.getElementById('player');
+                    
+                            var handleSuccess = function (stream) {
+                                player.srcObject = stream;
+                                player.onloadmetadata = () => {
+                                    player.play();
+                                }
+                            };
+                    
+                            navigator.mediaDevices.getUserMedia({ audio: true, video: true })
+                                .then(handleSuccess)
+                        </script>
+                    </div>
+                    
                 </div>
             </div>
             <div class="row">
