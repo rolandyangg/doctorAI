@@ -1,0 +1,30 @@
+h1, h2, h3, h4, h5, h6, a {
+  font-family: 'Poppins';
+}
+
+#navitem {
+  font-weight: bold;
+}
+
+#mainhead {
+  font-weight: bolder;
+}
+
+.white-text {
+  color: white;
+}
+
+.text-center {
+  font-weight: bold;
+}
+
+p {
+  font-family: 'Poppins';
+}
+
+#uses {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  background-color: #282d32;
+}
+

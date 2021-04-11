@@ -25,9 +25,9 @@ app.get("/", function (req, res) {
 });
 
 // Appplication
-app.get("/application", function (req, res) {
+app.get("/app", function (req, res) {
     console.log(req.url + "@" + Date() + " User requested to use application");
-    res.render('application');
+    res.render('app');
 });
 
 // Meet the Team
