@@ -62,7 +62,8 @@
                 </div>
                 <div class="col-9 rounded" style="background-color: white;">
                     <div id="videodiv" class="d-xl-flex justify-content-xl-center align-items-xl-center" style="padding: 3rem;">
-                       <video id="player" width="800" height="450" autoplay muted></video> <!--<video id="player" autoplay class="embed-responsive-item"></video>-->
+                       <video hidden id="player" width="800" height="450" autoplay muted></video>
+                       <canvas id="canvas1" width="800" height="450"></canvas> <!--<video id="player" autoplay class="embed-responsive-item"></video>-->
                     </div>       
                 </div>
             </div>
@@ -142,8 +143,8 @@
     <script src="application/assets/js/bs-init.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.js"></script>
     <script src="scripts/face-api.min.js"></script>
-    <script src="scripts/face_detect.js"></script>
-    <script src="scripts/main.js"></script>
+    <!--<script src="scripts/face_detect.js"></script>-->
+    <script type="module" src="scripts/index.js"></script>
 </body>
 
 </html>
