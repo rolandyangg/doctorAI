@@ -4,6 +4,7 @@ import {side_data, emotionSeconds, emotionArray, heartrate, textResponses, clear
 const reset = document.getElementById("reset");
 const nextquestion = document.getElementById("next-question");
 const record = document.getElementById("record");
+const capture = document.getElementById("capture");
 
 // text spots
 const progress = document.getElementById("progress");
@@ -11,6 +12,8 @@ const instructions = document.getElementById("instructions");
 const question = document.getElementById("question");
 const questiontitle = document.getElementById("question-title");
 const bpmDisplay = document.getElementById("bpm-count");
+const canvas = document.getElementById('canvas1');     
+const video = document.getElementById('player');
 var currIndex = 0;
 var currStep = 0;
 var maxStep = side_data[side_data.length - 1].step;
@@ -106,6 +109,23 @@ function runSpeechRecognition() {
 
      // start recognition
      recognition.start();
+}
+
+capture.addEventListener("click", async () => {
+    let image = await capture();
+})
+
+function capture() {
+    return new Promise((resolve, reject) => {{
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        canvas.getContext('2d').drawImage(video, 0, 0, video.videoWidth, video.videoHeight);  
+        canvas.toBlob((blob) => {
+            let img = new Image();
+            img.src = (window.URL ? URL : webkitURL).createObjectURL(blob);
+            return resolve(img);
+        });
+    }})
 }
 
 export {updateBPM};
