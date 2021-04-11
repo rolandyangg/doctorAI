@@ -4,6 +4,7 @@ import {
   emotionArray,
   heartrate
 } from "./data_storage.js";
+import { updateBPM } from "./main.js";
 
 const RESCAN_INTERVAL = 15000;
 const DEFAULT_FPS = 30;
@@ -380,15 +381,20 @@ export class Heartbeat {
         // Infer BPM
         let bpm = result.maxLoc.y * fps / signal.rows * SEC_PER_MIN;
 
-        // push heartrate once per second
-        if (heartbeatCount % 4 === 0) {
-          if (heartbeatCount === 12) {
+        // update the heartrate every 3 seconds
+        // update display every second
+        if (heartbeatCount++ % 4 == 0) {
+            let bpmstring = bpm + "";
+            bpmstring = bpmstring.substring(0, bpmstring.indexOf("."));
+            updateBPM(bpmstring);
+          if (heartbeatCount >= 12) {
             console.log(bpm);
-            heartrate.push(bpm);
+            heartrate.push(parseInt(bpmstring));
             console.log(heartrate);
             heartbeatCount = 0;
           }
         }
+          
 
         // Draw BPM
         // this.drawBPM(bpm);

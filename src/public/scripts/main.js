@@ -10,6 +10,7 @@ const progress = document.getElementById("progress");
 const instructions = document.getElementById("instructions");
 const question = document.getElementById("question");
 const questiontitle = document.getElementById("question-title");
+const bpmDisplay = document.getElementById("bpm-count");
 var currIndex = 0;
 var currStep = 0;
 var maxStep = side_data[side_data.length - 1].step;
@@ -40,3 +41,13 @@ function updateSideData() {
     else
         questiontitle.innerHTML = "Question";
 }
+
+function updateBPM(BPM) {
+    bpmDisplay.innerHTML = BPM + " BPM";
+}
+
+function getResults() {
+    
+}
+
+export {updateBPM};
