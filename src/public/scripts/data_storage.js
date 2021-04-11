@@ -1,74 +1,52 @@
+/** 
+ * null = record button wont do anything
+ * speak = record button takes spoken answer
+ * photo = record button takes photo
+*/
 const side_data = [{
         "step": 0,
         "question": "",
         "instructions": "",
+        "type": "null"
     },
     {
         "step": 1,
         "question": "",
         "instructions": "",
+        "type": "speak"
     },
     {
         "step": 2,
         "question": "",
         "instructions": "",
-    },
-    {
-        "step": 2.1,
-        "question": "",
-        "instructions": "",
-    },
-    {
-        "step": 2.2,
-        "question": "",
-        "instructions": "",
-    },
-    {
-        "step": 2.3,
-        "question": "",
-        "instructions": "",
-    },
-    {
-        "step": 2.4,
-        "question": "",
-        "instructions": "",
-    },
-    {
-        "step": 2.5,
-        "question": "",
-        "instructions": "",
-    },
-    {
-        "step": 2.6,
-        "question": "",
-        "instructions": "",
-    },
-    {
-        "step": 2.7,
-        "question": "",
-        "instructions": "",
-    },
-    {
-        "step": 2.8,
-        "question": "",
-        "instructions": "",
-    },
-    {
-        "step": 2.9,
-        "question": "",
-        "instructions": "",
+        "type:": "speak"
     },
     {
         "step": 3,
         "question": "",
         "instructions": "",
+        "type:": "speak"
     },
     {
         "step": 4,
         "question": "",
         "instructions": "",
+        "type": "speak"
     },
+    {
+        "step": 5,
+        "question": "",
+        "instructions": "",
+        "type": "photo"
+    },
+    {
+        "step": 6,
+        "question": "",
+        "instructions": "",
+        "type": "null"
+    }
 ]
+
 var emotionSeconds = {
     "angry": 0,
     "disgusted": 0,
@@ -81,6 +59,7 @@ var emotionSeconds = {
 }
 var emotionArray = [];
 var heartrate = [];
+var textResponses = [];
 
 function clearData() {
     emotionSeconds = {
@@ -95,7 +74,8 @@ function clearData() {
     }
     emotionArray = [];
     heartrate = [];
+    textResponses = [];
     console.log("Successfully reset data!");
 }
 
-export {side_data, emotionSeconds, emotionArray, heartrate, clearData};
+export {side_data, emotionSeconds, emotionArray, heartrate, textResponses, clearData};
