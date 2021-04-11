@@ -21,14 +21,16 @@ var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
 var recognition = new SpeechRecognition();
 
 
+
 // when next question is clicked
 nextquestion.addEventListener("click", () => {
     // check to make sure it can't go any further
     if (currIndex != side_data.length) {
         currIndex++;
         currStep = side_data[currIndex].step;
+        console.log(side_data[currIndex]);
         if (side_data[currIndex].type === "speak")
-            textResponses.append("");
+            textResponses.push("");
         updateSideData();
     } else {
         getResults();
@@ -71,8 +73,7 @@ record.addEventListener("click", () => {
 })
 
 async function runPhotoTake() {
-    let image = await captureImage();
-    screenshotImage = image;
+    screenshotImage = await captureImage();
 }
 
 function runSpeechRecognition() {
@@ -103,7 +104,7 @@ function runSpeechRecognition() {
         var transcript = event.results[0][0].transcript;
         var confidence = event.results[0][0].confidence;
         console.log(transcript);
-        textResponses[textResponses.length - 1].append(" " + transcript);
+        textResponses[textResponses.length - 1] = textResponses[textResponses.length - 1] + " " + transcript;
         // output.innerHTML = "<b>Text:</b> " + transcript;
         // output.classList.remove("hide");
     };

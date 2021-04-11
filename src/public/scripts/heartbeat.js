@@ -122,7 +122,7 @@ export class Heartbeat {
           faceapi.draw.drawFaceExpressions(canvas, resizedDetections);
           var emotionsDetected = detections.expressions;
         } catch (error) {
-          console.log("Cannot update box person has moved off camera");
+          // console.log("Cannot update box person has moved off camera");
         }
 
         // var bpm = 70;
@@ -138,12 +138,12 @@ export class Heartbeat {
             }
           })
         } catch (error) {
-          console.log("Pushing off camera to data");
+          // console.log("Pushing off camera to data");
         }
-        console.log(largestEmotion);
+        //console.log(largestEmotion);
         emotionSeconds[largestEmotion]++;
         emotionArray.push(largestEmotion);
-        console.log(emotionArray);
+        //console.log(emotionArray);
         // heartrate.push(bpm);
       }, 1000)
 
@@ -235,7 +235,7 @@ export class Heartbeat {
       this.face = faces.get(0);
       this.faceValid = true;
     } else {
-      console.log("No faces");
+      // console.log("No faces");
       this.invalidateFace();
     }
     faces.delete();
