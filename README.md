@@ -1,5 +1,5 @@
 # doctorAI
-democratizing healthcare through a simulated online check up
+democratizing healthcare through a simulated online check up for https://hacktj2021.devpost.com/
 
 # Dependencies
 ```bash
