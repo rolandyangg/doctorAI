@@ -1,6 +1,7 @@
 # doctorAI
 democratizing healthcare through a simulated online check up for https://hacktj2021.devpost.com/.      
 Google form for Autism: https://docs.google.com/forms/d/e/1FAIpQLScfXXtFIFbz1iora8uYmxneNylRVWa6BGUHfCKcKyIX8yaq2A/viewform?vc=0&c=0&w=1&flr=0&gxids=7628
+Website: https://checkdoctor.herokuapp.com/app
 ## Inspiration
 Across the world, millions of people lack access to healthcare due to either its extremely high costs or the unavailability of resources. Additionally, with the COVID-19 Pandemic, the demand for the skills of medical workers has reached all-time highs. There are simply too many people in need, and not enough workers to go address those needs. That is where doctorAI comes in. We propose an artificially intelligent virtual doctor in the form of a simulated wellness visit, that can screen and help diagnose the needs of people. As previously mentioned, there are simply too many people in need and the workers are being completely overworked, so this virtual doctor aims to be like a "second helping hand" that can give patients their information remotely, helping workers take care of their workloads and help them focus on their job of saving more lives. 
 
